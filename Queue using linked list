@@ -1,0 +1,96 @@
+#include <stdio.h>
+#include <stdlib.h>
+void enqueue();
+void dequeue();
+void display();
+
+struct node
+{
+    int data;
+    struct node *next;
+};
+struct node *front=NULL;
+struct node *rear=NULL;
+
+void main()
+{
+    int choice;
+    do
+    {
+        printf("Queue using linked list");
+        printf("\n**********Menu**********");
+        printf("\n 1.Enqueue \n 2.Dequeue \n 3.Display ");
+        printf("\n Enter your choice=");
+        scanf("%d",&choice);
+        switch(choice)
+        {
+            case 1:
+            enqueue();
+            break;
+            case 2:
+            dequeue();
+            break;
+            case 3:
+            display();
+            break;
+            default:
+            printf("\nWrong Choice");
+        }
+        printf("\n If you want to continue press 1=");
+        scanf("%d",&choice);
+    }while(choice==1);
+}
+void enqueue()
+{
+    int no;
+    printf("\n Enter the element=");
+    scanf("%d",&no);
+    struct node *new;
+    new=(struct node *)malloc(sizeof(struct node));
+    new->data=no;
+    new->next=NULL;
+    if(front==NULL && rear==NULL)
+    {
+        front=rear=new;
+        printf("\n First element is inserted successfully...");
+    }
+    else
+    {
+        rear->next=new;
+        rear=new;
+        printf("\n Element is inserted successfully...!");
+    }
+}
+void dequeue()
+{
+    struct node *temp;
+    if(front==NULL)
+    {
+        printf("Queue is Empty...Underflow");
+    }
+    else
+    {
+        temp=front;
+        front=front->next;
+        free(temp);
+        printf("\n Element is Deleted successfully...!");
+    }
+}
+void display()
+{
+    struct node *temp;
+    if((front==NULL && rear==NULL) || temp==NULL)
+    {
+        printf("\n Queue is Empty...");
+    }
+    else
+    {
+    printf("\nElements in the Queue= ");
+    temp=front;
+    while(temp!=NULL)
+    {
+        printf("%d ",temp->data);
+        temp=temp->next;
+    }
+    }
+}
