@@ -1,0 +1,69 @@
+#include<stdio.h>
+#include<string.h>
+int integer(char c)
+{
+    int count;
+    switch(c)
+    {
+        case 'I':
+        count=1;
+        break;
+        case 'V':
+        count=5;
+        break;
+        case 'X':
+        count=10;
+        break;
+        case 'L':
+        count=50;
+        break;
+        case 'C':
+        count=100;
+        break;
+        case 'D':
+        count=500;
+        break;
+        case 'M':
+        count=1000;
+        break;
+        case '\0':
+        count=0;
+        break;
+        default:
+        count=-1;
+        break;
+    }
+    return count;
+}
+int main()
+{
+    char roman[100];
+    int number=0,i=0;
+    printf("Enter the roman number=");
+    scanf("%s",roman);
+    while(roman[i])
+    {
+        if(integer(roman[i])<0)
+        {
+            printf("Invalid Roman Number");
+        }
+        if(strlen(roman)-i>2)
+        {
+            if(integer(roman[i])<integer(roman[i+2]))
+            {
+                printf("Invalid Roman Number");
+            }
+        }
+        if(integer(roman[i])>=integer(roman[i+1]))
+        {
+            number=number+integer(roman[i]);
+        }
+         else
+        {
+            number=number+integer(roman[i+1])-integer(roman[i]);
+        }
+        i++;
+    }
+    printf("Integer value=%d",number);
+    return 0;
+}
