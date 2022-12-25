@@ -1,0 +1,35 @@
+#include <stdio.h>
+void main()
+{
+    int size,no,i,j,temp,flag=0,array[size];
+    printf("Enter the total number of elements=");
+    scanf("%d",&size);
+    printf("\nEnter the Elements=\n");
+    for(i=0;i<size;i++)
+    {
+        scanf("%d",&array[i]);
+    }
+    printf("\n Given sequence of elements=");
+    {
+        for(i=0;i<size;i++)
+        {
+            printf(" %d ",array[i]);
+        }
+    }
+    for(i=1;i<size;i++)
+    {
+        temp=array[i];
+        j=i-1;
+        while(j>=0 && array[j]>temp)
+        {
+           array[j+1]=array[j];
+           j--;
+        }
+        array[j+1]=temp;
+    }
+    printf("\n After sorting sequence of elements=");
+    for(i=0;i<size;i++)
+    {
+        printf(" %d ",array[i]);
+    }
+}
